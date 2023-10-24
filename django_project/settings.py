@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'bootstrap5',
 ]
 
+# Add support for authenticating users 
+AUTHENTICATION_BACKENDS = [ 
+'django.contrib.auth.backends.ModelBackend', 
+] 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -112,6 +117,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+MEDIA_URL = '/images/' 
 
 
 # Static files (CSS, JavaScript, Images)
