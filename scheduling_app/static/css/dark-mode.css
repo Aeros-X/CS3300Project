@@ -1,0 +1,55 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Set background and text color for dark mode */
+  body[data-bs-theme="dark"] {
+    background-color: #121212; /* Dark background color */
+    color: #ffffff; /* Light text color */
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #1f1f1f; /* Dark header background color */
+    color: #ffffff; /* Light text color */
+    padding: 1rem;
+  }
+  
+  /* Navigation menu styles */
+  nav {
+    background-color: #1f1f1f; /* Dark navigation background color */
+  }
+  
+  nav a {
+    color: #ffffff; /* Light text color */
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+  }
+  
+  /* Button styles */
+  button {
+    background-color: #333; /* Dark button background color */
+    color: #ffffff; /* Light text color */
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dark mode toggle button */
+  #toggle-dark-mode {
+    background-color: #333;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Dark mode styles for specific elements (customize as needed) */
+  .dark-mode-element {
+    background-color: #333;
+    color: #ffffff;
+    border: 1px solid #555;
+  }
