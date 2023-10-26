@@ -1,21 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light"> <!-- Set the initial theme to "dark" or "light" as desired -->
+<html lang="en">
 
 <head>
-    <title>UCCS CS Students</title>
+    <title>Microsoft Teams Scheduling Extension App</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% load bootstrap5 %}
     {% bootstrap_css %}
-    {% bootstrap_javascript %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/light-mode.css' %}" data-bs-theme="light">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/dark-mode.css' %}" data-bs-theme="dark">
-    {% if request.COOKIES.dark_mode == 'enabled' %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/dark-mode.css' %}">
-    {% else %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/light-mode.css' %}">
-    {% endif %}
 </head>
 
 <body>
@@ -31,13 +23,16 @@
                         <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'students' %}">Students</a>
+                        <a class="nav-link" href="{% url 'schedules' %}">Schedules</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'portfolios' %}">Portfolios</a>
+                        <a class="nav-link" href="{% url 'dayshifts' %}">Day Shifts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+                        <a class="nav-link" href="{% url 'workshifts' %}">Work Shifts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'employees' %}">Employees</a>
                     </li>
                     <li>
                         <div id="content-container" data-theme="dark">
@@ -50,22 +45,5 @@
     </nav>
         {% block content %}
         {% endblock %}
-    
-
-    <script>
-        const toggleButton = document.getElementById('toggle-dark-mode');
-        const contentContainer = document.getElementById('content-container');
-    
-        toggleButton.addEventListener('click', () => {
-            const currentTheme = contentContainer.getAttribute('data-bs-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-            // Set the new theme
-            contentContainer.setAttribute('data-bs-theme', newTheme);
-    
-            // Save the user's preference in a cookie
-            document.cookie = `dark_mode=${newTheme}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
-        });
-    </script>
 </body>
 </html>

@@ -1,13 +1,32 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views import generic
-from scheduling_app.forms import ProjectForm, PortfolioForm
-from .models import Student, Portfolio, Project
+from scheduling_app.forms import ProjectForm, PortfolioForm, ScheduleForm, EmployeeForm, DayShiftForm, WorkShiftForm
+from .models import Student, Portfolio, Project, Schedule, Work_Shift, Day_Shift, Employee
+from datetime import datetime
 
 def index(request): 
-    student_active_portfolios = Student.objects.select_related('portfolio').all().filter(portfolio__is_active=True) 
-    print("active portfolio query set", student_active_portfolios) 
-    return render( request, 'scheduling_app/index.html', {'student_active_portfolios':student_active_portfolios})
+    #Get the current time stuff
+    current_day = datetime.now()
+    current_year = current_day.year
+    current_month = current_day.month
+    current_week = current_day.isocalendar()[1]
+
+    #Set the day to be 1 so that we get the week number
+    current_day = current_day.replace(day=1)
+    first_week = current_day.isocalendar()[1]
+
+    #Get the corresponding week number
+    week_number = (current_week - first_week) + 1
+
+    #Try to find a schedule that corresponds, otherwise, don't return anything
+    try:
+        schedule = Schedule.objects.get(year_cal = current_year, month_cal = current_month, week_cal = week_number)
+    except Schedule.DoesNotExist:
+        schedule = None
+
+    #Return the render
+    return render( request, 'scheduling_app/index.html', {'schedule_current_week':schedule})
 
 def portfolio_detail_view(request, portfolio_id):
     portfolio = get_object_or_404(Portfolio, pk=portfolio_id)
@@ -80,6 +99,27 @@ def deleteProject(request, portfolio_id, project_id):
         return redirect('portfolio-detail', portfolio_id)
     else:
         return render(request, 'scheduling_app/project_delete.html', {'project': project})
+
+#All of the views for schedule, dayshift, employees, workshift
+class ScheduleListView(generic.ListView): 
+    model = Schedule 
+class ScheduleDetailView(generic.DetailView): 
+    model = Schedule
+
+class DayShiftListView(generic.ListView):
+    model = Day_Shift
+class DayShiftDetailView(generic.ListView):
+    model = Day_Shift
+
+class EmployeeListView(generic.ListView):
+    model = Employee
+class EmployeeDetailView(generic.DetailView):
+    model = Employee
+
+class WorkShiftListView(generic.ListView):
+    model = Work_Shift
+class WorkShiftDetailView(generic.DetailView):
+    model = Work_Shift
 
 class StudentListView(generic.ListView): 
     model = Student 
