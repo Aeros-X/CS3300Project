@@ -1,0 +1,9 @@
+{% extends 'scheduling_app/base_template.html' %} 
+{% block content %} 
+    <h1>Workshift: {{workshift.day_shift}}</h1>
+    <p><strong>Employee:</strong> {{ workshift.employee }}</p> 
+    <p><strong>Start Time:</strong> {{ workshift.start_time }}</p> 
+    <p><strong>Duration:</strong> {{ workshift.duration }}</p> 
+    <a class="custom-button" href="{% url 'update_workshift' workshift_id=workshift.id %}" role="button">Update Workshift</a>
+    <a class="custom-button" href="{% url 'delete_workshift' workshift_id=workshift.id %}" role="button">Delete Workshift</a>
+{% endblock %}

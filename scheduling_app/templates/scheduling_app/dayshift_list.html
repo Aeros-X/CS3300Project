@@ -1,0 +1,20 @@
+{% extends 'scheduling_app/base_template.html' %} 
+{% block content %} 
+    <h1>Dayshift List</h1>
+    <div class="row">
+        {% if dayshift_list %}
+            {% for dayshift in dayshift_list %}
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="{{ dayshift.get_absolute_url }}">Dayshift: {{dayshift.schedule_day}}, {{dayshift.schedule}}</a></h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>There are no dayshifts created.</p>
+        {% endif %}
+    </div>
+    <a class="custom-button" href="{% url 'create_dayshift' %}" role="button">Create Dayshift</a>
+{% endblock %}

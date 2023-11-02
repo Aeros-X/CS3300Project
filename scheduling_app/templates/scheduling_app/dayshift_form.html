@@ -1,12 +1,11 @@
 <!-- inherit from base.html --> 
 {% extends 'scheduling_app/base_template.html' %} 
-<!-- Replace block content in base_template.html --> 
 {% block content %} 
     <form action="" method="POST"> 
         {% csrf_token %} 
         <table> 
             {{ form.as_table }} 
         </table> 
-        <input type="submit" class="btn btn-primary" name="Submit"> 
+        <input type="submit" class="btn custom-button" value="Submit"> 
     </form> 
 {% endblock %}

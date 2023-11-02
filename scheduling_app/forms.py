@@ -1,5 +1,5 @@
 from django.forms import ModelForm 
-from .models import Project, Portfolio, Employee, Work_Shift, Day_Shift, Schedule
+from .models import Employee, WorkShift, DayShift, Schedule
 
 #Create classes for schedule, day and work shift, and employees
 class ScheduleForm(ModelForm):
@@ -9,7 +9,7 @@ class ScheduleForm(ModelForm):
 
 class DayShiftForm(ModelForm):
     class Meta:
-        model = Day_Shift
+        model = DayShift
         fields = ('schedule', 'schedule_day', 'day_start_time', 'min_employees_per_department')
 
 class EmployeeForm(ModelForm):
@@ -19,16 +19,5 @@ class EmployeeForm(ModelForm):
 
 class WorkShiftForm(ModelForm):
     class Meta:
-        model = Work_Shift
+        model = WorkShift
         fields = ('day_shift', 'start_time', 'duration', 'employee')
-
-#create class for project form 
-class ProjectForm(ModelForm): 
-    class Meta: 
-        model = Project 
-        fields = ('title', 'description') 
-
-class PortfolioForm(ModelForm): 
-    class Meta: 
-        model = Portfolio 
-        fields = ('title', 'is_active', 'about', 'contact_email') 

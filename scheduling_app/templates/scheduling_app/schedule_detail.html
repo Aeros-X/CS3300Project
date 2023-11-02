@@ -1,0 +1,6 @@
+{% extends 'scheduling_app/base_template.html' %} 
+{% block content %} 
+    <h1>Schedule: {{schedule.week_cal}}, {{schedule.month_cal}}/{{schedule.year_cal}}</h1>
+    <a class="custom-button" href="{% url 'update_schedule' schedule_id=schedule.id %}" role="button">Update Schedule</a> 
+    <a class="custom-button" href="{% url 'delete_schedule' schedule_id=schedule.id %}" role="button">Delete Schedule</a> 
+{% endblock %}

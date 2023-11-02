@@ -1,0 +1,24 @@
+.custom-navbar {
+    background-color: #694475; /* Your custom color here */
+    /*color: #FFFFFF; /* Text color, usually white for better visibility */
+}
+
+.custom-button {
+    background-color: #694475; /* Your custom color here */
+    color: #FFFFFF; /* Text color, usually white for better visibility */
+    padding: 12px 24px; /* Increase padding to make the button larger */
+    border: none; /* Remove the default button border */
+    border-radius: 8px; /* Add rounded corners for a stylish look */
+    font-size: 18px; /* Increase the font size for better visibility */
+    cursor: pointer; /* Change the cursor to a hand pointer to indicate interactivity */
+    text-decoration: none; /* Remove underline if it's used in an anchor tag */
+}
+
+.nav-item a {
+    color: #ffffff; /* Your custom text color here */
+}
+
+body {
+    background-color: #000000; /* Change to your desired color */
+    color: #ffffff;
+}
