@@ -18,7 +18,8 @@
     color: #ffffff; /* Your custom text color here */
 }
 
-body {
-    background-color: #000000; /* Change to your desired color */
-    color: #ffffff;
+.custom-card
+{
+    background-color: #694475;
+    padding: 15px;
 }

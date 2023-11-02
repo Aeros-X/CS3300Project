@@ -4,15 +4,18 @@
 
  
 <!-- Replace block content in base_template.html --> 
+{% load static %}
 {% block content %} 
 <h1>Bookstore Schedules</h1> 
 <h2>Current Week Schedule</h2> 
+<h3>This website will be used to pull a schedule from Microsoft Teams, convert it into a schedule on this website, then allow the user to see the schedule providing a column based approach so the user can better understand what is happening as opposed to Microsoft Team's row based approach.</h3>
     <ul class="list-group"> 
         {% for i in schedule_current_week %} 
         <li class="list-group-item">Schedule: {{i.year_cal}} {{i.month_cal}} {{i.week_cal}} 
             <!--<p><strong>Portfolio:{{ i.portfolio.title }} -->
-            <a class="btn btn-primary" href="{{ i.get_absolute_url }}" role="button">View</a> 
+            <a class="btn custom-button" href="{{ i.get_absolute_url }}" role="button">View</a> 
         </li> 
         {% endfor %} 
     </ul> 
+    <img src="{% static 'images/work.jpg' %}" alt="My mental state after spending four hours on views because I spelled something wrong is only work" class= "img-fluid">
 {% endblock %} 

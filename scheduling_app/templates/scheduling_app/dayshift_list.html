@@ -5,7 +5,7 @@
         {% if dayshift_list %}
             {% for dayshift in dayshift_list %}
                 <div class="col-md-3">
-                    <div class="card mb-4">
+                    <div class="card mb-4" custom-card>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{ dayshift.get_absolute_url }}">Dayshift: {{dayshift.schedule_day}}, {{dayshift.schedule}}</a></h5>
                         </div>

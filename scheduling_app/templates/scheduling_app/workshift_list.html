@@ -5,7 +5,7 @@
         {% if workshift_list %}
             {% for workshift in workshift_list %}
                 <div class="col-md-3">
-                    <div class="card mb-4">
+                    <div class="card mb-4" custom-card>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{ workshift.get_absolute_url }}">Workshift: {{workshift.employee}}, {{workshift.day_shift}}</a></h5>
                         </div>
