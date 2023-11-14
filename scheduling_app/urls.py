@@ -1,4 +1,5 @@
 from django.urls import path 
+from django.conf.urls import include
 from . import views
 
 urlpatterns = [ 
@@ -30,5 +31,9 @@ path('employees/', views.EmployeeListView.as_view(), name= 'employees'),
 path('employee/<int:pk>', views.EmployeeDetailView.as_view(), name='employee-detail'),
 path('employee/create_employee/', views.createEmployee, name='create_employee'),
 path('employee/<int:employee_id>/update_employee/', views.updateEmployee, name='update_employee'),
-path('employee/<int:employee_id>/delete_employee/', views.deleteEmployee, name='delete_employee')
+path('employee/<int:employee_id>/delete_employee/', views.deleteEmployee, name='delete_employee'),
+
+#user accounts
+path('accounts/', include('django.contrib.auth.urls')),
+path('accounts/register/', views.registerPage, name='register_page')
 ]

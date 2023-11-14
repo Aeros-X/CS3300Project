@@ -1,5 +1,13 @@
 from django.forms import ModelForm 
 from .models import Employee, WorkShift, DayShift, Schedule
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+
+#User form 
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
 
 #Create classes for schedule, day and work shift, and employees
 class ScheduleForm(ModelForm):

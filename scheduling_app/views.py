@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views import generic
-from scheduling_app.forms import ScheduleForm, EmployeeForm, DayShiftForm, WorkShiftForm
+from django.contrib import messages
+from scheduling_app.forms import ScheduleForm, EmployeeForm, DayShiftForm, WorkShiftForm, CreateUserForm
 from .models import Schedule, WorkShift, DayShift, Employee
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from datetime import datetime
 
 def index(request): 
@@ -28,30 +31,35 @@ def index(request):
     #Return the render
     return render( request, 'scheduling_app/index.html', {'schedule_current_week':schedule})
 
-"""
-def portfolio_detail_view(request, portfolio_id):
-    portfolio = get_object_or_404(Portfolio, pk=portfolio_id)
-    project_list = Project.objects.filter(portfolio=portfolio)
-    return render(request, 'portfolio_detail.html', {'portfolio': portfolio, 'project_list': project_list})
+def registerPage(request):
+    form = CreateUserForm()
 
-#Updates a portfolio when called
-def updatePortfolio(request, portfolio_id):
-    #Ensures we have the project
-    portfolio = get_object_or_404(Portfolio, pk=portfolio_id)
-
-    #If we are posting, updates the portfolio and saves the form
     if request.method == 'POST':
-        form = PortfolioForm(request.POST, instance=portfolio)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('portfolio-detail', portfolio_id)
-    #Otherwise we grab the original form to update
-    else:
-        form = PortfolioForm(instance=portfolio)
+        
+    context = {'form':form}
+    return render(request, 'registration/register.html', context)
 
-    return render(request, 'scheduling_app/portfolio_form.html', {'form': form, 'portfolio': portfolio})
-"""
+def loginPage(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            redirect('index')
+        else:
+            messages.info(request, 'Username or Password incorrect')
+
+    context = {}
+    return render(request, 'registration/login.html', context)
+
 #Create a schedule
+@login_required(login_url='login')
 def createSchedule(request):
     if request.method == 'POST':
         form = ScheduleForm(request.POST)
@@ -70,6 +78,7 @@ def createSchedule(request):
     return render(request, 'scheduling_app/schedule_form.html', context)    
 
 #Create a schedule
+@login_required(login_url='login')
 def createDayShift(request):
     if request.method == 'POST':
         form = DayShiftForm(request.POST)
@@ -88,6 +97,7 @@ def createDayShift(request):
     return render(request, 'scheduling_app/dayshift_form.html', context)
 
 #Create a schedule
+@login_required(login_url='login')
 def createWorkShift(request):
     if request.method == 'POST':
         form = WorkShiftForm(request.POST)
@@ -106,6 +116,7 @@ def createWorkShift(request):
     return render(request, 'scheduling_app/workshift_form.html', context)
 
 #Create a schedule
+@login_required(login_url='login')
 def createEmployee(request):
     if request.method == 'POST':
         form = EmployeeForm(request.POST)
@@ -125,6 +136,7 @@ def createEmployee(request):
 
 
 #Updates a schedule when called
+@login_required(login_url='login')
 def updateSchedule(request, schedule_id):
     #Ensures we have the project
     schedule = get_object_or_404(Schedule, pk=schedule_id)
@@ -142,6 +154,7 @@ def updateSchedule(request, schedule_id):
     return render(request, 'scheduling_app/schedule_form.html', {'form': form, 'schedule': schedule})
 
 #Updates a schedule when called
+@login_required(login_url='login')
 def updateDayShift(request, dayshift_id):
     #Ensures we have the project
     dayshift = get_object_or_404(DayShift, pk=dayshift_id)
@@ -159,6 +172,7 @@ def updateDayShift(request, dayshift_id):
     return render(request, 'scheduling_app/dayshift_form.html', {'form': form, 'dayshift': dayshift})
 
 #Updates a schedule when called
+@login_required(login_url='login')
 def updateWorkShift(request, workshift_id):
     #Ensures we have the project
     workshift = get_object_or_404(WorkShift, pk=workshift_id)
@@ -176,6 +190,7 @@ def updateWorkShift(request, workshift_id):
     return render(request, 'scheduling_app/workshift_form.html', {'form': form, 'workshift': workshift})
 
 #Updates a schedule when called
+@login_required(login_url='login')
 def updateEmployee(request, employee_id):
     #Ensures we have the project
     employee = get_object_or_404(Employee, pk=employee_id)
@@ -194,6 +209,7 @@ def updateEmployee(request, employee_id):
 
 
 #Deletes a project when called
+@login_required(login_url='login')
 def deleteSchedule(request, schedule_id):
     #Ensures we have the project
     schedule = get_object_or_404(Schedule, pk=schedule_id)
@@ -206,6 +222,7 @@ def deleteSchedule(request, schedule_id):
         return render(request, 'scheduling_app/schedule_delete.html', {'schedule': schedule})
 
 #Deletes a project when called
+@login_required(login_url='login')
 def deleteDayShift(request, dayshift_id):
     #Ensures we have the project
     dayshift = get_object_or_404(DayShift, pk=dayshift_id)
@@ -218,6 +235,7 @@ def deleteDayShift(request, dayshift_id):
         return render(request, 'scheduling_app/dayshift_delete.html', {'dayshift': dayshift})
 
 #Deletes a project when called
+@login_required(login_url='login')
 def deleteWorkShift(request, workshift_id):
     #Ensures we have the project
     workshift = get_object_or_404(WorkShift, pk=workshift_id)
@@ -230,6 +248,7 @@ def deleteWorkShift(request, workshift_id):
         return render(request, 'scheduling_app/workshift_delete.html', {'workshift': workshift})
 
 #Deletes a project when called
+@login_required(login_url='login')
 def deleteEmployee(request, employee_id):
     #Ensures we have the project
     employee = get_object_or_404(Employee, pk=employee_id)
