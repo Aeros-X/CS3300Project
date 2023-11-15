@@ -5,7 +5,7 @@
         {% if employee_list %}
             {% for employee in employee_list %}
                 <div class="col-md-3">
-                    <div class="card mb-4">
+                    <div class="card mb-4" custom-card>
                         <div class="card-body">
                             <h5 class="card-title"><a href="{{ employee.get_absolute_url }}">Employee: {{employee.name}}: {{employee.department}}</a></h5>
                         </div>
@@ -16,5 +16,5 @@
             <p>There are no employees created.</p>
         {% endif %}
     </div>
-    <a class="custom-button" href="{% url 'create_employee' %}" role="button">Create Employee</a>
+    <a class="custom-button" name="createEmployee" href="{% url 'create_employee' %}" role="button">Create Employee</a>
 {% endblock %}

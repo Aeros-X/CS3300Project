@@ -44,6 +44,9 @@ class DayShift(models.Model):
     day_start_time = models.TimeField(blank=False)
     min_employees_per_department = models.PositiveSmallIntegerField(default=1)
 
+    def get_min(self):
+        return self.min_employees_per_department
+
     #Define default String to return the name for representing the Model object." 
     def __str__(self): 
         return str(self.schedule) + ", " + str(self.schedule_day)

@@ -34,7 +34,7 @@
                         <a class="nav-link" href="{% url 'workshifts' %}">Work Shifts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'employees' %}">Employees</a>
+                        <a class="nav-link" name="employeesTab" href="{% url 'employees' %}">Employees</a>
                     </li>
                     {% if user.is_authenticated %}
                         <li class="nav-item">
