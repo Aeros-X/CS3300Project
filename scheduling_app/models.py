@@ -1,9 +1,20 @@
 from django.db import models
 from django.db import models
 from django.urls import reverse
+from .teams_api import get_chat_messages
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 import calendar
+
+#Create a message model
+class Message(models.Model):
+    message_id = models.CharField(max_length=255)
+    content = models.TextField()
+
+#Create a chat model
+class Chat(models.Model):
+    chat_id = models.CharField(max_length=255)
+    messages = models.ManyToManyField(Message)
 
 #Create the schedule model
 class Schedule(models.Model): 

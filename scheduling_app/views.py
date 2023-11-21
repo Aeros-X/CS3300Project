@@ -7,6 +7,7 @@ from .models import Schedule, WorkShift, DayShift, Employee
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from teams_api import save_chats_to_db
 
 def index(request): 
     #Get the current time stuff
@@ -30,6 +31,11 @@ def index(request):
 
     #Return the render
     return render( request, 'scheduling_app/index.html', {'schedule_current_week':schedule})
+
+@login_required(login_url='login')
+def displayChats(request):
+    chats = save_chats_to_db()
+    return render(request, 'chat_list.html', {'chats': chats})
 
 def registerPage(request):
     form = CreateUserForm()
