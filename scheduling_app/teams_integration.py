@@ -6,7 +6,7 @@ def get_access_token(client_id, client_secret, tenant_id):
         'grant_type': 'client_credentials',
         'client_id': client_id,
         'client_secret': client_secret,
-        'scope': 'https://graph.microsoft.com/.default'
+        'scope': 'https://graph.microsoft.com/Chat.Read'
     }
 
     response = requests.post(url, data=data)

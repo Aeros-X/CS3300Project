@@ -33,7 +33,7 @@ def get_chat_messages(chat_id, access_token):
 
 #This saves the chats to the database
 def save_chats_to_db():
-    access_token = get_access_token('a3b437a6-6853-4685-9f2a-e616295684fe', 'Deq8Q~L5Fk6Q1aiC1-MJn..aFUE.sx_~mMdTydeQ', 'f8cdef31-a31e-4b4a-93e4-5f571e91255a')
+    access_token = get_access_token('a3b437a6-6853-4685-9f2a-e616295684fe', '.Bi8Q~ELEx0Q44tjtJmmRxBBxKQLdqf0eJ8TuaJY', 'f8cdef31-a31e-4b4a-93e4-5f571e91255a')
     chats_data = get_chats(access_token)
 
     #Makes sure we have chats to pull from
