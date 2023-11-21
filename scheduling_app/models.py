@@ -1,7 +1,6 @@
 from django.db import models
 from django.db import models
 from django.urls import reverse
-from .teams_api import get_chat_messages
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 import calendar

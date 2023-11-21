@@ -1,6 +1,6 @@
 # teams_api.py
 import requests
-from teams_integration import get_access_token
+from .teams_integration import get_access_token
 from models import Chat, Message
 
 #This gets all of the chats if they exist
