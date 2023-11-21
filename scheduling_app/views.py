@@ -35,7 +35,7 @@ def index(request):
 @login_required(login_url='login')
 def displayChats(request):
     chats = save_chats_to_db()
-    return render(request, 'chat_list.html', {'chats': chats})
+    return render(request, 'chats_list.html', {'chats': chats})
 
 def registerPage(request):
     form = CreateUserForm()
