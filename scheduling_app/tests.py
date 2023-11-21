@@ -54,6 +54,7 @@ class EmployeeTestCase(TestCase):
         test2 = Employee.objects.get(name="test2")
         self.assertEqual(test.get_department(), 'LDR')
         self.assertEqual(test2.get_department(), 'CC')
+
 """
 class LoginFormTest(LiveServerTestCase):
     def testform(self):
