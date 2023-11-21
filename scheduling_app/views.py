@@ -7,7 +7,7 @@ from .models import Schedule, WorkShift, DayShift, Employee
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from teams_api import save_chats_to_db
+from .teams_api import save_chats_to_db
 
 def index(request): 
     #Get the current time stuff
